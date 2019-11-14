@@ -23,7 +23,7 @@ class Solution:
         return True
 ```
 
-## skill
+## skill:
 ```python3
 class Solution:
     def isValid(self, s: str) -> bool:
