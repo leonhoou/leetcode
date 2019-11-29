@@ -9,6 +9,7 @@ class Solution:
     def longestPalindrome(self, s: str) -> str:
         dp = [[False for j in range(len(s))] for i in range(len(s))]
         maxLen = 0
+        start = -1
         for i in range(len(s)):
             for j in range(i, len(s)):
                 # 子串长度小于等于2时一定是回文子串
@@ -35,6 +36,7 @@ class Solution:
     def longestPalindrome(self, s: str) -> str:
         dp = [[False for j in range(len(s))] for i in range(len(s))]
         maxLen = 0
+        start = -1
         # i:start; j:end
         for j in range(len(s)):
             for i in range(j+1):
