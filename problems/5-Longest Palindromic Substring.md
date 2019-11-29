@@ -13,7 +13,7 @@ class Solution:
             for j in range(i, len(s)):
                 # 子串长度小于等于2时一定是回文子串
                 if (j - i) < 2:
-                    dp[i][j] = True
+                    dp[i][j] = (s[i] == s[j])
                 # 子串长度大于2时动态规划
                 else:
                     dp[i][j] = (dp[i+1][j-1] and (s[i] == s[j]))
@@ -40,7 +40,7 @@ class Solution:
             for i in range(j+1):
                 # 子串长度小于等于2时一定是回文子串
                 if (j - i) < 2:
-                    dp[i][j] = True
+                    dp[i][j] = (s[i] == s[j])
                 # 子串长度大于2时动态规划
                 else:
                     dp[i][j] = (dp[i+1][j-1] and (s[i] == s[j]))
