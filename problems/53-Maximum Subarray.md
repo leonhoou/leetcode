@@ -36,7 +36,7 @@ class Solution:
 
 ### Solution3
 
-分治思想
+分治思想 O(nlogn): T(n)=2T(n/1)+O(n)
 
 ```
 import sys
