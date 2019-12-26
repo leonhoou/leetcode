@@ -53,3 +53,7 @@ class Solution:
                 return False
         return True
 ···
+
+## Tips
+
+回文类型的题注意使用双指针解决
