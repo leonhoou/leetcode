@@ -40,6 +40,23 @@ class Solution:
         return maj
 ```
 
+化简：
+
+```
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        maj = 0
+        cnt = 0
+        for num in nums:
+            if cnt == 0:
+                maj = num
+            if num == maj:
+                cnt += 1
+            else:
+                cnt -= 1
+        return maj
+```
+
 思路：利用数量最多的元素的数量超过一半这个特性
 
 ### Solution3
