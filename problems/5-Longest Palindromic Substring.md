@@ -12,7 +12,7 @@ class Solution:
         start = -1
         for i in range(len(s)):
             for j in range(i, len(s)):
-                # 子串长度小于等于2时一定是回文子串
+                # 子串长度小于等于2时不一定是回文子串，为啥卡在这的理解了！
                 if (j - i) < 2:
                     dp[i][j] = (s[i] == s[j])
                 # 子串长度大于2时动态规划
@@ -40,7 +40,7 @@ class Solution:
         # i:start; j:end
         for j in range(len(s)):
             for i in range(j+1):
-                # 子串长度小于等于2时一定是回文子串
+                # 子串长度小于等于2时不一定是回文子串
                 if (j - i) < 2:
                     dp[i][j] = (s[i] == s[j])
                 # 子串长度大于2时动态规划
