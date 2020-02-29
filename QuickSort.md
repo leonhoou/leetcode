@@ -24,7 +24,7 @@ def quickSort1(arr, s, e):
 ```
 
 ## ---快排非递归
-# 重点：栈 存储排序的start和end
+#### 重点：栈 存储排序的start和end
 ```
 def quickSort2(arr, s, e):
     stack = []
