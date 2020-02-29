@@ -1,5 +1,6 @@
 ## ---快排递归
 
+```
 def partition(a, s, e):
     pivot = a[e]
     # i：待确定元素的位置
@@ -20,9 +21,11 @@ def quickSort1(arr, s, e):
         idx = partition(arr, s, e)
         quickSort1(arr, s, idx-1)
         quickSort1(arr, idx+1, e)
+```
 
 ## ---快排非递归
 # 重点：栈 存储排序的start和end
+```
 def quickSort2(arr, s, e):
     stack = []
     stack.append(s)
@@ -43,3 +46,4 @@ def quickSort2(arr, s, e):
         stack.append(i+1)
         stack.append(end)'''
         stack.extend([start, i-1, i+1, end])
+```
