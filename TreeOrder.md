@@ -5,6 +5,7 @@
 ```
 #include <iostream>
 #include <stack>
+#include <queue>
 using namespace std;
 
 struct Node {
@@ -14,6 +15,22 @@ struct Node {
     Node(): left(NULL), right(NULL), val(-1) {}
     Node(int val): left(NULL), right(NULL), val(val) {}
 };
+
+// 广度优先遍历
+void breadthOrder(Node* root) {
+    queue<Node*> q;
+    q.push(root);
+    while(!q.empty()) {
+        root = q.front(); q.pop();
+        cout << root->val << " ";
+        if(root->left != NULL) {
+            q.push(root->left);
+        }
+        if(root->right != NULL) {
+            q.push(root->right);
+        }
+    }
+}
 
 void preOrderRecur(Node* root) {
     if(root != NULL) {
@@ -118,11 +135,12 @@ void postOrderDoubleStack(Node* root) {
 }
 
 int main() {
-//    先序遍历递归 ：1 2 4 5 8 3 6 7
+//    广度优先遍历：1 2 3 4 5 6 7 8
+//    先序遍历递归：1 2 4 5 8 3 6 7
 //    先序遍历非递归：1 2 4 5 8 3 6 7
-//    中序遍历递归 ：4 2 8 5 1 6 3 7
+//    中序遍历递归：4 2 8 5 1 6 3 7
 //    中序遍历非递归：4 2 8 5 1 6 3 7
-//    后序遍历递归 ：4 8 5 2 6 7 3 1
+//    后序遍历递归：4 8 5 2 6 7 3 1
 //    后序遍历非递归：4 8 5 2 6 7 3 1
 //    双栈后序遍历非递归：4 8 5 2 6 7 3 1
 //    Program ended with exit code: 0
@@ -134,14 +152,16 @@ int main() {
     root->left->right->left = new Node(8);
     root->right->left = new Node(6);
     root->right->right = new Node(7);
-    cout << "先序遍历递归 ："; preOrderRecur(root); cout << endl;
+    cout << "广度优先遍历："; breadthOrder(root); cout << endl;
+    cout << "先序遍历递归："; preOrderRecur(root); cout << endl;
     cout << "先序遍历非递归："; preOrder(root); cout << endl;
-    cout << "中序遍历递归 ："; inOrderRecur(root); cout << endl;
+    cout << "中序遍历递归："; inOrderRecur(root); cout << endl;
     cout << "中序遍历非递归："; inOrder(root); cout << endl;
-    cout << "后序遍历递归 ："; postOrderRecur(root); cout << endl;
+    cout << "后序遍历递归："; postOrderRecur(root); cout << endl;
     cout << "后序遍历非递归："; postOrder(root); cout << endl;
     cout << "双栈后序遍历非递归："; postOrderDoubleStack(root); cout << endl;
 }
+
 
 ```
 
