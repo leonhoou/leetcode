@@ -141,3 +141,49 @@ public:
     }
 };
 ```
+
+考虑有环的情况：有环就返回false，无环就进行选课的操作
+
+```
+class Solution {
+public:
+    // 深度优先搜索
+    // 沿这一条路径一直走，遍历节点的所有邻接节点往下递归走
+    // 前置节点肯定要放在后置节点的前面
+    // 考虑有环的情况
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<int> res;
+        vector<vector<int> > graph(numCourses, vector<int>());
+        // 邻接矩阵存储图
+        for(auto prerequisite : prerequisites) {
+            graph[prerequisite[1]].push_back(prerequisite[0]);
+        }
+        vector<bool> visited(numCourses, false);
+        vector<bool> toVisit(numCourses, false);
+        for(int i = 0; i < numCourses; ++i) {
+            if(acyclic(graph, res, visited, toVisit, i)) {
+                return {};
+            }
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+    
+    bool acyclic(vector<vector<int> >& graph, vector<int>& res, vector<bool>& visited, vector<bool>& toVisit, int start) {
+        // 怎么判断有环呢？就是在本次深度优先搜索时搜到了自己身上
+        if(toVisit[start]) return true;
+        if(visited[start]) return false;
+        toVisit[start] = true;
+        visited[start] = true;
+        for(int i : graph[start]) {
+            if(acyclic(graph, res, visited, toVisit, i))
+                return true;
+        }
+        // 前置节点肯定要放在后置节点的前面，所以要先添加父节点
+        res.push_back(start);
+        // 回溯，由该节点深度搜索之后，该节点就变为false了
+        toVisit[start] = false;
+        return false;
+    }
+};
+```
