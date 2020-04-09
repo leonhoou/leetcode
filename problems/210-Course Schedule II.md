@@ -104,3 +104,40 @@ public:
     }
 };
 ```
+
+## 解法二：DFS
+
+一步一步来，这是考虑无环的状况的深度优先搜索
+
+```
+class Solution {
+public:
+    // 深度优先搜索
+    // 沿这一条路径一直走，遍历节点的所有邻接节点往下递归走
+    // 前置节点肯定要放在后置节点的前面
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<int> res;
+        vector<vector<int> > graph(numCourses, vector<int>());
+        // 邻接矩阵存储图
+        for(auto prerequisite : prerequisites) {
+            graph[prerequisite[1]].push_back(prerequisite[0]);
+        }
+        vector<bool> visited(numCourses, false);
+        for(int i = 0; i < numCourses; ++i) {
+            dfs(graph, res, visited, i);
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+    
+    void dfs(vector<vector<int> >& graph, vector<int>& res, vector<bool>& visited, int start) {
+        if(visited[start]) return;
+        visited[start] = true;
+        for(int i = 0; i < graph[start].size(); ++i) {
+            dfs(graph, res, visited, graph[start][i]);
+        }
+        // 前置节点肯定要放在后置节点的前面，所以要先添加父节点
+        res.push_back(start);
+    }
+};
+```
