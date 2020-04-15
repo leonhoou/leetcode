@@ -1,0 +1,77 @@
+## Problem
+
+https://leetcode-cn.com/problems/smallest-k-lcci/
+
+## Solution
+
+快排和大顶堆
+
+```
+class Solution {
+public:
+    vector<int> smallestK(vector<int>& arr, int k) {
+        int n = arr.size();
+        if (n < 1 || k < 1 || k > n) return {};
+        int low = 0, high = n - 1;
+        while (low < high) {
+            int pos = partition(arr, low, high);
+            if (pos == k) break;
+            else if (pos < k) low = pos + 1;
+            else high = pos - 1;
+        }
+        return vector<int>(arr.begin(), arr.begin()+k);
+    }
+
+    int partition(vector<int>& arr, int low, int high) {
+        int pivot = arr[high];
+        int j = low;
+        for (int i = low; i < high; ++i) {
+            if (arr[i] < pivot) {
+                swap(arr[j], arr[i]);
+                j++;
+            }
+        }
+        swap(arr[j], arr[high]);
+        return j;
+    }
+    /*
+    vector<int> smallestK(vector<int>& arr, int k) {
+        int n = arr.size();
+        if (n < 1 || k < 1 || k > n) return {};
+        vector<int> res(arr.begin(), arr.begin()+k);
+        make_heap(res.begin(), res.end());
+        for (int i = k; i < arr.size(); ++i) {
+            if (arr[i] < res[0]) {
+                pop_heap(res.begin(), res.end());
+                res.pop_back();
+                res.push_back(arr[i]);
+                push_heap(res.begin(), res.end());
+            }
+        }
+        return res;
+    }
+    */
+    /*
+    vector<int> smallestK(vector<int>& arr, int k) {
+        int n = arr.size();
+        if (n < 1 || k < 1 || k > n) return {};
+        priority_queue<int> p;
+        vector<int> res;
+        for (int i = 0; i < k; ++i) {
+            p.push(arr[i]);
+        }
+        for (int i = k; i < arr.size(); ++i) {
+            if (arr[i] < p.top()) {
+                p.pop();
+                p.push(arr[i]);
+            }
+        }
+        for (int i = 0; i < k; ++i) {
+            res.push_back(p.top());
+            p.pop();
+        }
+        return res;
+    }
+    */
+};
+```
