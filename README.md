@@ -10,3 +10,5 @@ my solutions and new skills for leetcode
 [二叉树-遍历（广度，深度）](https://github.com/leonhoou/leetcode/blob/master/TreeOrder.md)
 
 [字符串匹配算法（暴力，KMP）](https://github.com/leonhoou/leetcode/blob/master/strMatch.md)
+
+[Huffman树和编码](https://github.com/leonhoou/leetcode/blob/master/Huffman.md)
